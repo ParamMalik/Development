@@ -19,7 +19,7 @@ public class ProductController {
     public Mono<ResponseEntity<ProductDto>> getProductById(@PathVariable String id) {
         return productService.getProductById(id)
                 .map(ResponseEntity.ok()::body)
-                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+                .switchIfEmpty(Mono.just(ResponseEntity.noContent().build()));
     }
 
     @GetMapping
@@ -48,7 +48,7 @@ public class ProductController {
         return productService.removeAllProducts();
     }
 
-    // Updating quantity and Price
+    // Updating NAME and Price
 
     @PutMapping
     public Mono<ResponseEntity<ProductDto>> updateProductByName(@RequestBody ProductDto productDto) {
