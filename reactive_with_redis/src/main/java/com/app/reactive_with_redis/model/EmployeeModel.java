@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeModel {
+public class EmployeeModel implements Serializable {
     @Id
-    private Integer id;
+    private String id;
     private String name;
     private Double salary;
     private String company;
