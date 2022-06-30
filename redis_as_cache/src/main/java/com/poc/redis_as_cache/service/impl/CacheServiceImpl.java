@@ -18,14 +18,16 @@ public class CacheServiceImpl implements CacheService {
     private final CacheRepository cacheRepository;
 
     @Override
-    @CachePut(value = "CacheModel")
+    @CachePut(value = "CacheModel", key = "#cacheModel.name")
     public CacheModel addCacheData(CacheModel cacheModel) {
+        System.out.println("Post To db");
         return cacheRepository.save(cacheModel);
     }
 
     @Override
-    @Cacheable(value = "CacheModel")
+    @Cacheable(value = "CacheModel", key = "#id")
     public CacheModel getCacheDataById(String id) {
+        System.out.println("Calling get by Id From DB");
         return cacheRepository.findById(id).get();
     }
 
@@ -36,7 +38,7 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    @CacheEvict(value = "CacheModel")
+    @CacheEvict(value = "CacheModel", key = "#id")
     public void deleteCacheDataById(String id) {
         cacheRepository.deleteById(id);
     }

@@ -15,7 +15,7 @@ public class CacheController {
     private final CacheService cacheService;
 
     @PostMapping
-    public CacheModel addCacheData(CacheModel cacheModel) {
+    public CacheModel addCacheData(@RequestBody CacheModel cacheModel) {
         return cacheService.addCacheData(cacheModel);
     }
 
